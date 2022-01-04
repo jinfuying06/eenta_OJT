@@ -1,0 +1,23 @@
+-- 제목: 영화등록창
+-- 작성자: 김보영
+-- 작성일: 2021-12-23
+-- 영화코드, 영화명, 영화장르, 영화구분, 영화배우
+
+SELECT      A.MOVIE_CD
+        ,   A.MOVIE_NM
+        ,   A.CO_MOVIE_CATE_CD
+        ,   CO1.CO_CD_NM CO_MOVIE_CATE
+        ,   A.CO_MOVIE_TYPE_CD
+        ,   CO2.CO_CD_NM CO_MOVIE_TYPE_NM
+        ,   A.ACT_CD
+        ,   B.ACT_NM
+FROM VSM_MOVIE_INFO A
+
+LEFT OUTER JOIN VSM_CO_CD CO1
+ON CO1.CO_CD = A.CO_MOVIE_CATE_CD
+
+LEFT OUTER JOIN VSM_CO_CD CO2
+ON CO2.CO_CD = A.CO_MOVIE_TYPE_CD
+
+LEFT OUTER JOIN VSM_ACT_INFO B
+ON B.ACT_CD = A.ACT_CD

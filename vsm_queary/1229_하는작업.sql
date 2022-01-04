@@ -1,0 +1,47 @@
+
+-- 넘어야할 산 : RETURN_DUE_DATE를 RETURN_DATE와 합쳐서 자동 계산을 받은 후
+    -- 연체금액까지 계산할 수 있도록 하는 방법 -> 이건 나중에 구현할 때 JavaScript로 해결하면 될듯??
+    -- (현재는 기존에 저장되어있던 RETURN_DUE_DATE 데이터를 씀.)
+
+-- VSM_RENT_RECORD에 가져올 CO_MOVIE_TYPE_CD를 VSM_TAPE_INFO와 VSM_MOVIE_INFO를 조인해서 가져오기 위한 쿼리
+    -- (이는 WITH 그룹으로 묶어서 VSM_RENT_RECORD와 TAPE_CD로 조인하여 CO_MOVIE_TYPE_CD를 가져온다.)
+WITH TAPE_TYPE_GRP AS (
+    SELECT C.TAPE_CD
+        ,  D.MOVIE_CD
+        ,  D.CO_MOVIE_TYPE_CD
+    FROM VSM_TAPE_INFO C
+
+     LEFT OUTER JOIN VSM_MOVIE_INFO D
+     ON D.MOVIE_CD = C.MOVIE_CD
+    )
+
+SELECT
+    A.RENT_DATE
+,   A.TAPE_CD
+,   A.CUSTOM_CD
+,   A.RETURN_DUE_DATE
+,   CASE WHEN B.CO_MOVIE_TYPE_CD = 00000 -- 반납예정일
+    THEN A.RENT_DATE + 7
+    WHEN B.CO_MOVIE_TYPE_CD = 00001
+    THEN A.RENT_DATE + 3
+    END 반납예정일
+,   A.RETURN_DATE
+,   CASE WHEN A.RETURN_DUE_DATE < A.RETURN_DATE -- 연체금액
+            AND B.CO_MOVIE_TYPE_CD = 00000
+         THEN 500 * (A.RETURN_DATE - A.RETURN_DUE_DATE)
+         WHEN A.RETURN_DUE_DATE < A.RETURN_DATE
+            AND B.CO_MOVIE_TYPE_CD = 00001
+         THEN 1000 * (A.RETURN_DATE - A.RETURN_DUE_DATE)
+        WHEN A.RETURN_DATE IS NULL
+             AND B.CO_MOVIE_TYPE_CD = 00000
+        THEN 500 * (TRUNC(SYSDATE, 'DD') - A.RETURN_DUE_DATE)
+        WHEN A.RETURN_DATE IS NULL
+             AND B.CO_MOVIE_TYPE_CD = 00001
+        THEN 1000 * (TRUNC(SYSDATE, 'DD') - A.RETURN_DUE_DATE)
+        ELSE 0
+     END 연체금액
+,   B.CO_MOVIE_TYPE_CD
+FROM VSM_RENT_RECORD A
+
+LEFT OUTER JOIN TAPE_TYPE_GRP B
+ON B.TAPE_CD = A.TAPE_CD
