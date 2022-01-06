@@ -20,6 +20,7 @@ WITH KWD_LIST AS (
                     FROM DUAL
                     CONNECT BY TRIM(REGEXP_SUBSTR(:KEYWORD, '[^,]+', 1, LEVEL)) IS NOT NULL
                  )
+-- SELECT * FROM KWD_LIST
 
 SELECT *
 FROM VSM_MOVIE_INFO A
