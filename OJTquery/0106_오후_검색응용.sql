@@ -44,6 +44,7 @@ ON B.MOVIE_CD = A.MOVIE_CD
 
 -----------------------------------------------------------------------------------
 WITH TMP_KWD_LIST AS (
+
                     SELECT TRIM(REGEXP_SUBSTR(:KEYWORD, '[^,]+', 1, LEVEL)) AS KEYWORD
                     FROM DUAL
                     CONNECT BY TRIM(REGEXP_SUBSTR(:KEYWORD, '[^,]+', 1, LEVEL)) IS NOT NULL
