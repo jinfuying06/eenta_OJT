@@ -1,0 +1,9 @@
+연동 시킨 후 커밋하는 방법
+1. 작업하고자 하는 폴더에서 GIT BASH 켜서
+	GIT ADD . 으로 커밋 사항에 올리기
+2. git status로 stage area에 올려놓을 파일 확인 (빨간 글씨로 뜨는 파일 혹은 폴더)
+3. git commit 해서 메시지 입력창으로 이동
+	-- 이 때 Insert를 눌러서 편집모드로 바꾼 뒤 커밋 메시지 입력
+	-- 작성 완료 후 esc를 누르고 :wq를 입력후 엔터로 메시지 입력창을 닫는다.
+4. git push -u origin main 을 쳐서 푸쉬해주면 끝!
+	-- main / master 주의하기

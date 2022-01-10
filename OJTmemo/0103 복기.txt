@@ -1,0 +1,27 @@
+model에서 dataCollection(브라우저 내에 데이터를 담는 그릇)
+	을 구성하는 데에는 두 가지가 있다: 1. dataMap 2. dataList
+- 1. dataMap은 HashMap(Map)이며, key와 value값으로 구성되어있다. tag를 key로 정의한다.
+		주로 검색조건을 입력받아야 할 때 사용한다.
+	- 화면.xml
+		<w2:dataMap 의 key(id=dma.select)는 submission(서버 서비스(Controller) 호출 개체) 
+		내에 ref에 작성된다.
+		<body> <w2:input 란에 있는 ref에도 작성해줘야 한다.
+	-> 이렇게하면 화면에서 입력 받는 값을 dma.select에 담을 준비가 된다.
+	- Controller에서 dma.select를 Map처리 시켜줘야한다. 
+		이를 selectParam이라고 명명해준다.
+		이후 selectParam을 만들어두었던 hashmap에 채운다.
+			= List movieInfoList = ojtService.selectMovieInfoList(selectParam);
+	- 이는 Service로 전달 -> ServiceImpl -> 쿼리에서 실행이 일어난다.
+	- 쿼리.xml -> ServiceImple -> Service -> Controller -> 화면.xml 으로 다시 결과값이 도출됨.
+	
+- 2. dataList는 Table이며 tag를 column으로 정의한다.
+		화면에 출력해야하는 DB테이블 값을 받아와야 할 때 사용한다.
+	- 화면.xml
+		<w2: dataList 에서
+			<w: column info에 넣어줄 컬럼 id와 name을 기입해줘야한다.
+			submission 내에 taget에 적어주며 dataList id를 작성해준다.
+		화면으로 출력될 테이블은 <body><gridView 내에 컬럼명들을 선언해준다.
+		이렇게하면 화면에서 조회 버튼을 눌렀을 때 컨트롤러로 전달해줄 준비가 된다.
+				OJTController에서 outMap.put("dlt_movieInfoList", movieInfoList);
+		return commonDao.getList("ojt.vsm.selectMovieInfoList(쿼리id)", dto);
+- submission의 action에는 Controller의 노출명을 적어준다.

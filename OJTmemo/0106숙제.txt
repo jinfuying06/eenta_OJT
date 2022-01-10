@@ -1,0 +1,58 @@
+검색조건 : 
+대여일시(RENT_DATE) 기간으로 받기
+(예: 10/10~10/12로 검색하면 그 사이 대여기록이 뜰 수 있도록)
+, 영화제목
+
+조회항목 : 
+연번(ROW_NUM)
+, 대여일시(RENT_DATE)
+, 테이프번호(TAPE_CD)
+, 영화코드(MOVIE_CD)
+, 영화제목(MOVIE_NM)
+, 고객코드(CUSTOM_CD)
+, 고객명(CUSTOM_NM)
+, 고객전화번호(CUSTOM_TEL)
+,  반납예정일(RETURN_DUE_DATE)
+, 반납여부
+, 대여처리자(UPT_ID)
+
+id="sbm_selectRentRecord"
+
+target="data:json,dlt_rentRecord"
+
+action="/SEMAP/selectRentRecordBYK.do"
+
+id="grd_rentRecord"
+
+KSB0000002
+
+JSP0000002
+
+ROWNUM
+        ,   A.RENT_DATE
+        ,   A.TAPE_CD
+        ,   A.MOVIE_CD
+        ,   B.MOVIE_NM 
+        ,   A.CUSTOM_CD
+        ,   C.CUSTOM_NM
+        ,   C.CUSTOM_TEL
+        ,   A.RETURN_DUE_DATE
+        ,   A.CO_RETURN_CHECK
+        ,   D.CO_CD_NM RETURN_CHECK
+        ,   CASE WHEN A.RETURN_DATE IS NOT NULL
+                 THEN '반납'
+                 WHEN A.RENT_DATE IS NOT NULL AND A.RETURN_DATE IS NULL
+                 THEN '미납'
+                 END RETURN_CHECKING
+        ,   A.CRE_ID
+FROM VSM_RENT_RECORD A
+
+테이프번호" dataT
+"영화코드" dataTy
+"영화제목" dataTy
+="고객코드" dataT
+="고객명" dataTyp
+e="고객전화번호" 
+" name="반납예정
+" name="반납여부"
+대여처리자" dataT

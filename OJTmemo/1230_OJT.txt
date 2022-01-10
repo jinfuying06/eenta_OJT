@@ -1,0 +1,37 @@
+MOVIE_CD			영화코드"
+MOVIE_NM			영화명"
+CO_MOVIE_CATE_CD			장르코드"
+CO_MOVIE_CATE_NM			장르명"
+CO_MOVIE_TYPE_CD			영화구분코드"
+CO_MOVIE_TYPE_NM			영화구분명"
+ACT_CD			배우코드"
+ACT_NM			배우명"
+CRE_ID			생성자ID"
+MANAGE_NM			관리자명"
+TAPE_CNT			테이프개수"
+RENT_CNT			대여기록횟수"
+
+
+			
+			
+MOVIE_CD
+MOVIE_NMselectTapeInfoList
+CO_MOVIE_CATE_CD
+CO_MOVIE_CATE_NM
+CO_MOVIE_TYPE_CD
+CO_MOVIE_TYPE_NM
+ACT_CD
+ACT_NM
+CRE_ID
+MANAGE_NM
+TAPE_CNT
+RENT_CNT
+
+이벤트 : 어떤 동작이 발생했을 때 알리는 거
+이벤트 핸들러 : 개체에 어떤 동작(이벤트)가 발생했을 때 수행되는 코드가 정의되어 있는 함수(JavaScript)
+
+anchor 안에 있는 이벤트(onClick)를 수행할 때 " " 안에 있는 걸 수행해라
+
+-- Impl class는 인터페이스를 상속받아 만든다
+
+a implements b -> a가 b를 시행하다 // a는 b를 상속받아 상세한 내용을 구현하다

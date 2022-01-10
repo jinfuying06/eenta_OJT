@@ -1,0 +1,16 @@
+WebSquare XML(화면)파일 구조 : 
+<xf:model>
+	<w2:dataCollection>
+		<w2:dataMap> -- HashMap(Map) // tag를 key라고 정의 key와 value로 구성되어있는 하나의 묶음
+		<w2:dataList> -- Table // tag를 column으로 정의
+-- 브라우저 내에 데이터를 담는 그릇
+
+-- dataType : text를 보편적으로 많이 쓴다
+
+-- <xf:submission> : 서버 서비스(Controller) 호출 개체(편리하게 호출을 위한 방식 :post)
+
+-- GridView : 테이블 형태의 dataList를 연동
+
+-- ref : 파라미터를 담고있는 dataCollection요소를 적어준다
+-- target : submission에서 반환되는 데이터를 담아줄 dataCollection의 요소명을 적어준다
+-- action : Controller의 노출명

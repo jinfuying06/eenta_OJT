@@ -1,0 +1,4 @@
+* GreidView에 select 항목 바인딩 하는 방법
+	- 쿼리에서는 해당항목의 코드(만)로 가져온다.
+	- 해당 항목 전체를 담고 있는 별도의 datalist를 선언하고 해당 datalist를 
+	scwin.onpageload에서 채워지도록 한다.

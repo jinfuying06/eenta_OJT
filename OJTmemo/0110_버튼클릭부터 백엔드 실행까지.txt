@@ -1,0 +1,13 @@
+창에서 조회버튼을 클릭
+프론트에서 datalist 부름 
+datalist id 로 target된 submission을 찾아서 action을 부름
+Controller가 호출됨
+contrroler는 service라는 메뉴판에서 조회해줄 수 있는 기능을 요청
+service는 serviceImpl에서 수행가능한 코드를 요청해서
+serviceImpl이 DB로 들어가 조회를 해옴
+그거를 반대순서로 다시 해서 창에 도달함.
+
+DTO=택시 TAGET에서 보낸 데이터 = 손님 OJT.VSM~ = 목적지
+DAO = MAPPER 호출, MAPPER = DB 호출
+
+조건 = DTO에 담아 보냄

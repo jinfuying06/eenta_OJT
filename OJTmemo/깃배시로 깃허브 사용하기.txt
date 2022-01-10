@@ -1,0 +1,75 @@
+1. 바탕화면에서 'git bash' 검색해서 실행 
+- github 아이디, 이메일 주기 :
+git config --global user.name "사용자명"
+git config --global user.email "깃헙이메일"
+
+2. 깃으로 넣을 폴더 이동 
+cd 경로 복붙
+
+3. 폴더 깨끗하게 비워주기
+git init 
+
+4. 생성되는 Branch를 master -> main으로 이동시키기
+git checkout -b main // main브랜치를 생성하고 해당 브랜치로 이동
+git branch -M main // 기본 브랜치를 main브랜치로 지정
+git status // 상태 확인
+
+5. 파일 작성 후 add, commit 하기
+git add 파일명 // 파일을 staging area에 추가
+
+* 폴더로 넣고 싶을 경우
+git add . /폴더명
+
+git commit -m 'message' // commit하고 commit에 대한 간단한 메시지 작성 
+
+git log // commit 내역 확인
+git log --online // 로그 한줄 확인
+
+6. 원격 repository (GitHub) 추가 및 push/pull 
+git remote add origin <remote repository 주소>
+
+git pull --allow-unrelated-histories origin main //처음으로 깃에서 파일들 가져오기
+//원격 리포지토리에서 처음 pull 할 때만 --allow옵션 사용 하면 됨
+
+git push -u origin main  // 파일 push하기
+//u옵션 : push 할 기본 원격 저장소와 브랜치를 기억, 
+앞으로는 git push만 해도 원격 저장소와 브랜치 잡아줌
+
+-> pull을 할 때에는 git에 main 브랜치가 존재해야한다.
+
+* 파일 되돌리기
+git restore 파일명  
+git reset --hard log키
+git reflog    // 삭제한 커밋의 아이디를 확인 할 수 있음
+git reset // 삭제한 커밋 아이디
+
+-git log 또는 git reflog를 통해 commit id 확인
+-1) git reset --soft 
+ - commit내역을 되돌리고, commit만 취소 : 
+ staging area에는 아직 있는 상태 add까지만 진행된 상태일 때
+2) git reset --mixed
+ - commit내역을 되돌리고 staging(add상태)까지 취소 
+3) git reset --hard 
+ -commit내역을 되돌리고 파일을 rollback 함 
+4) git revert <commit>
+ - 지정한 commit으로 인해 발생한 변경을 되돌리고, 새로운 커밋을 생성해 커밋 내역에 추가
+
+* 브랜치 관련 설명
+git checkout -b <브랜치명> // 새로운 브랜치를 생성하고 이동
+git checkout 브랜치명 // 기존의 브랜치로 이동
+git merge <브랜치명> // 브랜치 병합 (병합할 브랜치의 commit 내역도 함께 병합)
+git merge -squash <브랜치명> // 브랜치 병합
+		// merge 한 후 반드시 새롭게 commit 후 push
+
+각종 Git 명령어 참고 블로그
+https://blog.naver.com/rkdwjs235/222559372654
+
+Git 연결 참고 블로그
+https://blog.naver.com/zo9612/222550027272
+
+*Error 관련 참고 블로그
+- The following untracked working tree files would be overwritten by checkout
+https://victorydntmd.tistory.com/54
+
+- Your local changes to the following files would be overwritten by checkout
+https://victorydntmd.tistory.com/77?category=682763
