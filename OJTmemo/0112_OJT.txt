@@ -1,0 +1,36 @@
+data map = map = hashmap
+datalist = list(generic) = arraylist
+list의 한 행의 구조는 map 구조와 같다(key와 value로 이루어져있음)
+
+datalist<datamap>
+list<map> = list<hashmap>
+arraylist<object>
+
+list의 개념은 table의 개념과 같다
+
+map의 개념은 record의 개념과 같다
+
+
+object : type(원시) - 모든 인스턴스는 oject로부터 출발한다. (int, string...)
+
+int a = 3;
+string b = '44';
+Obeject c = a;
+Obeject d = b;
+
+int e = (int)c => casting (type의 명시적 변환)
+
+for (Map<String, String> movieInfoMap : (List<Map<String, String>>) movieInfoList_save) {
+=> (List<Map<String, String>>) movieInfoList_save -(Casting)한 거임
+
+
+movie의 rowstatus가 null일 경우를 방지하기 위해 고정된 문자열을 앞으로 세워서 equals를 준다
+if ("C".equals(movieInfoMap.get("rowStatus"))) {
+	// 체번
+}
+ bykService.~
+ 
+getRowMap -> 반환행이 없거나 한개
+getList -> 테이블 조회
+
+MAP에서 데이터를 불러올 땐 키값(쿼리 테이블상에선 컬럼명)을 준다.
